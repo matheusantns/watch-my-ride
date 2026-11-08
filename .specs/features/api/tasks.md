@@ -108,12 +108,12 @@ T14 → T15 → T16 → T17 → T18 → T19
 
 **Done when**:
 
-- [ ] `RuleViolationException` carries `code()`. `complete(liters, pricePerLiter, totalAmount)` returns `Amounts` at scales 3, 3, and 2, `HALF_UP`.
-- [ ] 40 liters at 5.899 with no total returns total 235.96. Total 235.96 with no price returns price 5.899.
-- [ ] Total 235.97 with price 5.899 stays 235.97. Total 235.98 raises `inconsistent_amount`.
-- [ ] A missing pair raises `required_field`. Out of range raises `invalid_liters`, `invalid_price`, or `invalid_amount`. Zero and negative values use those same three codes.
-- [ ] 3 liters and total 10.00 return price 3.333.
-- [ ] `MoneyTest` has these cases. Gate passes: `./mvnw -q -Dtest=MoneyTest test`. The 8 tests pass.
+- [x] `RuleViolationException` carries `code()`. `complete(liters, pricePerLiter, totalAmount)` returns `Amounts` at scales 3, 3, and 2, `HALF_UP`.
+- [x] 40 liters at 5.899 with no total returns total 235.96. Total 235.96 with no price returns price 5.899.
+- [x] Total 235.97 with price 5.899 stays 235.97. Total 235.98 raises `inconsistent_amount`.
+- [x] A missing pair raises `required_field`. Out of range raises `invalid_liters`, `invalid_price`, or `invalid_amount`. Zero and negative values use those same three codes.
+- [x] 3 liters and total 10.00 return price 3.333.
+- [x] `MoneyTest` has these cases. Gate passes: `./mvnw -q -Dtest=MoneyTest test`. The 8 tests pass.
 
 **Tests**: unit
 **Gate**: quick
