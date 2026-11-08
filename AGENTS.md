@@ -1,0 +1,2 @@
+- This is a study project, always if you can, use the skill /learning-opportunities;
+- Write code in English: packages, types, methods, fields, routes, JSON keys, error codes, tables, and columns. Spec prose stays Portuguese. Glossary and AD-004 live in `.specs/project.md` and `.specs/STATE.md`.
