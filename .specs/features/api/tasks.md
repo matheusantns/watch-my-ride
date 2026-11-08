@@ -87,10 +87,10 @@ T14 → T15 → T16 → T17 → T18 → T19
 
 **Done when**:
 
-- [ ] Java 21. Parent `spring-boot-starter-parent` 4.1.2. Starters: `spring-boot-starter-webmvc`, `spring-boot-starter-data-jpa`, `spring-boot-starter-security`, Flyway, and the test starter. Testcontainers Postgres is a test dependency.
-- [ ] `WatchMyRideApplication` starts. `spring.jpa.hibernate.ddl-auto=validate`. Flyway owns the schema. Jackson uses snake_case. `Clock` is a bean in `America/Sao_Paulo`. The owner token is read from the environment variable `OWNER_TOKEN`.
-- [ ] `PassedTestLogger` prints `PASSED <display name>` to stdout for each passing test. Surefire leaves that line on the console under `./mvnw -q test`.
-- [ ] The Maven wrapper is `./mvnw`. Gate passes: `./mvnw -q -DskipTests package`.
+- [x] Java 21. Parent `spring-boot-starter-parent` 4.1.2. Starters: `spring-boot-starter-webmvc`, `spring-boot-starter-data-jpa`, `spring-boot-starter-security`, Flyway, and the test starter. Testcontainers Postgres is a test dependency.
+- [x] `WatchMyRideApplication` starts. `spring.jpa.hibernate.ddl-auto=validate`. Flyway owns the schema. Jackson uses snake_case. `Clock` is a bean in `America/Sao_Paulo`. The owner token is read from the environment variable `OWNER_TOKEN`.
+- [x] `PassedTestLogger` prints `PASSED <display name>` to stdout for each passing test. Surefire leaves that line on the console under `./mvnw -q test`.
+- [x] The Maven wrapper is `./mvnw`. Gate passes: `./mvnw -q -DskipTests package`.
 
 **Tests**: none
 **Gate**: build
@@ -623,7 +623,7 @@ Proof: run test | PASSED C35 zero or negative money returns invalid_liters inval
 
 ## Handoff
 
-**Settled mid-build:** none
+**Settled mid-build:** T1 done locally, no commit, per user. Testcontainers 2 artifacts are `testcontainers-junit-jupiter` and `testcontainers-postgresql`. `junit-platform-launcher` is an explicit test dependency so `PassedTestLogger` compiles. `OWNER_TOKEN` may be empty until the security task.
 **Dispatched:** none
 **Walked:** none
 

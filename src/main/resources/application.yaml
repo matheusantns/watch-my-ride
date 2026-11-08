@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+watchmyride:
+  owner-token: ${OWNER_TOKEN:}

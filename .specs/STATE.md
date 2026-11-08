@@ -35,3 +35,9 @@
 - **Status**: active
 
 ## Handoff
+
+- Feature: api
+- Phase: 1, T1 complete, next T2
+- Uncommitted: pom.xml, mvnw, mvnw.cmd, .mvn/, src/main, src/test, .specs approval and T1 marks
+- Blockers: none
+- Commit skipped on request

@@ -1,0 +1,23 @@
+package watchmyride;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+
+import java.time.Clock;
+import java.time.ZoneId;
+
+@SpringBootApplication
+@EnableConfigurationProperties(OwnerSettings.class)
+public class WatchMyRideApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(WatchMyRideApplication.class, args);
+    }
+
+    @Bean
+    Clock clock() {
+        return Clock.system(ZoneId.of("America/Sao_Paulo"));
+    }
+}

@@ -2,3 +2,15 @@
 .claude
 .cursor
 .windsurf
+
+target/
+*.class
+*.log
+
+.idea/
+*.iml
+.vscode/
+
+.env
+.env.*
+!.env.example
