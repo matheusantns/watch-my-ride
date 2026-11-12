@@ -8,7 +8,7 @@ public final class Odometer {
     private Odometer() {
     }   
     
-    public static void acceptsInsert(Integer highestStored, Integer next) {
+    public static void acceptsInsert(Integer highestStored, int next) {
         if(next < MIN_KM_INTEGER || next > MAX_KM_INTEGER) {
             throw new RuleViolationException("invalid_odometer");
         }
@@ -25,6 +25,20 @@ public final class Odometer {
             throw new RuleViolationException("duplicate_odometer");
         }
 
+    }
+
+    public static void acceptsUpdate(Integer previous, int next, Integer following) {
+        if(next < MIN_KM_INTEGER || next > MAX_KM_INTEGER) {
+            throw new RuleViolationException("invalid_odometer");
+        }
+
+        if (previous != null && next <= previous) {
+            throw new RuleViolationException("regressive_odometer");
+        }
+
+        if (following != null && next >= following) {
+            throw new RuleViolationException("regressive_odometer");
+        }
     }
 
     
