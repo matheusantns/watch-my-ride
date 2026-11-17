@@ -20,15 +20,15 @@ Implement these tasks with the `tlc-spec-driven` skill: **activate it by name an
 
 > Generated from codebase, project guidelines, and spec - confirm before Execute. Guidelines found: `.specs/project.md` (JUnit, Maven), `.specs/features/api/design.md` (pure Java for the rules, HTTP at the edge, Testcontainers for Postgres). No test sources and no build file exist yet. The commands below are the Maven commands T1 adds.
 
-| Code Layer | Required Test Type | Coverage Expectation | Location Pattern | Run Command |
-| --- | --- | --- | --- | --- |
-| Money, Odometer, Consumption | unit | All branches of those classes, including the money and odometer limits they own | `src/test/java/watchmyride/refuel/MoneyTest.java`, `OdometerTest.java`, `ConsumptionTest.java` | `./mvnw -q -Dtest=MoneyTest,OdometerTest,ConsumptionTest test` |
-| RefuelService | integration | Create, list, get, update, delete, consumption, spending, clock, and the write lock | `src/test/java/watchmyride/refuel/RefuelServiceTest.java` | `./mvnw -q -Dtest=RefuelServiceTest test` |
-| RefuelRepository | integration | Highest odometer, descending order, unique `odometer_km` | `src/test/java/watchmyride/persistence/RefuelRepositoryTest.java` | `./mvnw -q -Dtest=RefuelRepositoryTest test` |
-| HTTP API | integration | Every route in the design: happy path, listed edge, and error path | `src/test/java/watchmyride/api/RefuelApiTest.java`, `ApiExceptionHandlerTest.java`, `SecurityConfigTest.java` | `./mvnw -q test` |
-| Maven project, entity, Flyway | none | Build gate only | `pom.xml`, `RefuelEntity.java`, `V1__refuel.sql` | `./mvnw -q -DskipTests package` |
+| Code Layer                    | Required Test Type | Coverage Expectation                                                                | Location Pattern                                                                                              | Run Command                                                    |
+| ----------------------------- | ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Money, Odometer, Consumption  | unit               | All branches of those classes, including the money and odometer limits they own     | `src/test/java/watchmyride/refuel/MoneyTest.java`, `OdometerTest.java`, `ConsumptionTest.java`                | `./mvnw -q -Dtest=MoneyTest,OdometerTest,ConsumptionTest test` |
+| RefuelService                 | integration        | Create, list, get, update, delete, consumption, spending, clock, and the write lock | `src/test/java/watchmyride/refuel/RefuelServiceTest.java`                                                     | `./mvnw -q -Dtest=RefuelServiceTest test`                      |
+| RefuelRepository              | integration        | Highest odometer, descending order, unique `odometer_km`                            | `src/test/java/watchmyride/persistence/RefuelRepositoryTest.java`                                             | `./mvnw -q -Dtest=RefuelRepositoryTest test`                   |
+| HTTP API                      | integration        | Every route in the design: happy path, listed edge, and error path                  | `src/test/java/watchmyride/api/RefuelApiTest.java`, `ApiExceptionHandlerTest.java`, `SecurityConfigTest.java` | `./mvnw -q test`                                               |
+| Maven project, entity, Flyway | none               | Build gate only                                                                     | `pom.xml`, `RefuelEntity.java`, `V1__refuel.sql`                                                              | `./mvnw -q -DskipTests package`                                |
 
-A passing test prints one stdout line: `PASSED ` plus its JUnit display name. T1's listener does that. Each check below owns a display name that starts with its id (`C1`, `C2`, ...), so one line cannot satisfy another check.
+A passing test prints one stdout line: `PASSED` plus its JUnit display name. T1's listener does that. Each check below owns a display name that starts with its id (`C1`, `C2`, ...), so one line cannot satisfy another check.
 
 Postgres tests need Docker. Testcontainers starts the database. No H2.
 
@@ -36,11 +36,11 @@ Postgres tests need Docker. Testcontainers starts the database. No H2.
 
 > Generated from the Maven build T1 creates - confirm before Execute. No linter is configured. The compiler runs inside the package command.
 
-| Gate Level | When to Use | Command |
-| --- | --- | --- |
-| Quick | After a task whose tests are only `MoneyTest`, `OdometerTest`, or `ConsumptionTest` | `./mvnw -q -Dtest=MoneyTest,OdometerTest,ConsumptionTest test` |
-| Full | After a task that starts Spring or Postgres | `./mvnw -q test` |
-| Build | After the scaffold, the entity, or a phase | `./mvnw -q -DskipTests package` |
+| Gate Level | When to Use                                                                         | Command                                                        |
+| ---------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Quick      | After a task whose tests are only `MoneyTest`, `OdometerTest`, or `ConsumptionTest` | `./mvnw -q -Dtest=MoneyTest,OdometerTest,ConsumptionTest test` |
+| Full       | After a task that starts Spring or Postgres                                         | `./mvnw -q test`                                               |
+| Build      | After the scaffold, the entity, or a phase                                          | `./mvnw -q -DskipTests package`                                |
 
 ---
 
@@ -131,10 +131,10 @@ T14 → T15 → T16 → T17 → T18 → T19
 
 **Done when**:
 
-- [ ] `acceptsInsert(highestStored, next)` rejects a next reading lower than the stored max with `regressive_odometer`, and an equal reading with `duplicate_odometer`. An empty history accepts an in-range reading.
-- [ ] `acceptsUpdate(previous, next, following)` requires next to be greater than the previous neighbor when it exists, and less than the following neighbor when it exists. A sole reading of 9000 is accepted.
-- [ ] A reading below 0 or above 9999999 raises `invalid_odometer`.
-- [ ] `OdometerTest` covers insert, duplicate, update inside the neighbors, update outside, the sole reading, and the range. Gate passes: `./mvnw -q -Dtest=MoneyTest,OdometerTest test`. No prior test was deleted.
+- [x] `acceptsInsert(highestStored, next)` rejects a next reading lower than the stored max with `regressive_odometer`, and an equal reading with `duplicate_odometer`. An empty history accepts an in-range reading.
+- [x] `acceptsUpdate(previous, next, following)` requires next to be greater than the previous neighbor when it exists, and less than the following neighbor when it exists. A sole reading of 9000 is accepted.
+- [x] A reading below 0 or above 9999999 raises `invalid_odometer`.
+- [x] `OdometerTest` covers insert, duplicate, update inside the neighbors, update outside, the sole reading, and the range. Gate passes: `./mvnw -q -Dtest=MoneyTest,OdometerTest test`. No prior test was deleted.
 
 **Tests**: unit
 **Gate**: quick
